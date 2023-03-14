@@ -1,19 +1,18 @@
 // Description: This file contains the database connection
 // Author: Sebastián Gámez Ariza
 
-// Import the sequelize library
+// There's importing the environment variables
+import dotenv from 'dotenv';
+dotenv.config();
+
+// There's importing the ORM
 import { Sequelize } from 'sequelize';
 
-// Import the database configuration
-import dataBaseConfig from './configDatabase';
+// Getting the db url through environment variables
+const DB_URL: string = process.env.DB_URL!;
 
-const { database, username, password, host } = dataBaseConfig;
+// There's connecting the db 
+const sequelize = new Sequelize(DB_URL);
 
-// Create the database connection
-const devicesDatabase = new Sequelize(database, username, password, {
-    host: host,
-    dialect: 'mysql'
-});
-
-// Export the database connection
-export default devicesDatabase;
+// There's exporting the db
+export default sequelize;

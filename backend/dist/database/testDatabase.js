@@ -23,7 +23,7 @@ const testDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log('Database connection successful');
     }
     catch (error) {
-        console.error('Database connection failed');
+        console.log('Database connection failed');
     }
 });
 // Export the test database function

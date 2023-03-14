@@ -16,6 +16,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // Import test database function
 const testDatabase_1 = __importDefault(require("./database/testDatabase"));
+// Import the devices database
+const devicesDatabase_1 = __importDefault(require("./database/devicesDatabase"));
 // Import dotenv
 const dotenv_1 = __importDefault(require("dotenv"));
 // Load the environment variables
@@ -33,6 +35,10 @@ app.use(express_1.default.json());
 const port = process.env.PORT || 3000;
 // Start the server
 app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
+    // Log the server port
     console.log(`Server listening on port ${port}`);
+    // Test the database connection
     yield (0, testDatabase_1.default)();
+    // Synchronize the devices database
+    yield devicesDatabase_1.default.sync({ force: true });
 }));

@@ -4,6 +4,9 @@
 // Import test database function
 import testDatabase from './database/testDatabase';
 
+// Import the devices database
+import devicesDatabase from './database/devicesDatabase';
+
 // Import dotenv
 import dotenv from 'dotenv';
 // Load the environment variables
@@ -27,6 +30,10 @@ const port: number | string = process.env.PORT || 3000;
 
 // Start the server
 app.listen(port, async () => {
+    // Log the server port
     console.log(`Server listening on port ${port}`);
+    // Test the database connection
     await testDatabase();
+    // Synchronize the devices database
+    await devicesDatabase.sync({force: true});
 });

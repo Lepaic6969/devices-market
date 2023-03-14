@@ -5,15 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Import the sequelize library
+// There's importing the environment variables
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+// There's importing the ORM
 const sequelize_1 = require("sequelize");
-// Import the database configuration
-const configDatabase_1 = __importDefault(require("./configDatabase"));
-const { database, username, password, host } = configDatabase_1.default;
-// Create the database connection
-const devicesDatabase = new sequelize_1.Sequelize(database, username, password, {
-    host: host,
-    dialect: 'mysql'
-});
-// Export the database connection
-exports.default = devicesDatabase;
+// Getting the db url through environment variables
+const DB_URL = process.env.DB_URL;
+// There's connecting the db 
+const sequelize = new sequelize_1.Sequelize(DB_URL);
+// There's exporting the db
+exports.default = sequelize;

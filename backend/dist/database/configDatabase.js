@@ -12,7 +12,7 @@ dotenv_1.default.config();
 // Database configuration
 const dataBaseConfig = {
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    port: parseInt(process.env.DB_PORT),
     database: process.env.DB_DATABASE,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,

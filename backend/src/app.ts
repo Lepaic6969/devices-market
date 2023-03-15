@@ -12,6 +12,15 @@ import express, {type Express} from 'express';
 // Importing the cors library
 import cors from 'cors';
 
+// Import routes
+import brandRoute from './routes/v1/brandRoute';
+import referenceRoute from './routes/v1/referenceRoute';
+import deviceRoute from './routes/v1/deviceRoute';
+import employeeRoute from './routes/v1/employeeRoute';
+import registerDeviceRoute from './routes/v1/registerDeviceRoute';
+
+
+
 // Import test database function
 import testDatabase from './database/testDatabase';
 
@@ -24,6 +33,14 @@ const app: Express = express();
 // Set the middlewares
 app.use(cors());
 app.use(express.json());
+
+// Set the routes
+app.use('/api/v1/brand', brandRoute);
+app.use('/api/v1/reference', referenceRoute);
+app.use('/api/v1/device', deviceRoute);
+app.use('/api/v1/employee', employeeRoute);
+app.use('/api/v1/registerDevice', registerDeviceRoute);
+
 
 // Set the port
 const port: number | string = process.env.PORT || 3000;

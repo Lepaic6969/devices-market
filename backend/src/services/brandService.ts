@@ -25,7 +25,7 @@ export const getBrands = async (): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Brands found successfully',
-			data: JSON.stringify(brands),
+			data: brands,
 		};
 	} catch (error) {
 		// Throw error
@@ -52,7 +52,7 @@ export const getBrandById = async (id: number): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Brand found successfully',
-			data: JSON.stringify(brand),
+			data: brand,
 		};
 	} catch (error) {
 		// Throw error

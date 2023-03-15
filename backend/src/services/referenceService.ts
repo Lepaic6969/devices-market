@@ -25,7 +25,7 @@ export const getReferences = async (): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'References found successfully',
-			data: JSON.stringify(references),
+			data: references,
 		};
 	} catch (error) {
 		// Throw error
@@ -52,7 +52,7 @@ export const getReferenceById = async (id: number): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Reference found successfully',
-			data: JSON.stringify(reference),
+			data: reference,
 		};
 	} catch (error) {
 		// Throw error

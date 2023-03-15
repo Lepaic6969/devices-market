@@ -8,7 +8,7 @@ import devicesDatabase from '../database/devicesDatabase';
 import {DataTypes} from 'sequelize';
 
 // Create the employee model
-const EmployeeModel = devicesDatabase.define('Employee', {
+const EmployeeModel = devicesDatabase.define('employee', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,

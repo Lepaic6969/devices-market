@@ -118,8 +118,7 @@ export const updateEmployee = async (id: number, employee: EmployeeType): Promis
 		// Return response
 		response = {
 			status: 200,
-			message: 'Employee updated',
-			data: JSON.stringify(employee),
+			message: 'Employee updated'
 		};
 	} catch (error) {
 		// Return response

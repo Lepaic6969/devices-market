@@ -16,8 +16,8 @@ const deviceSchema = Joi.object({
             .min(3)
             .max(255),
     state: Joi.boolean(),
-    referenceId: Joi.number(),
-    brandId: Joi.number(),
+    referencesId: Joi.number(),
+    brandsId: Joi.number(),
 });
 
 // Export the schema

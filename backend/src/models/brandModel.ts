@@ -8,7 +8,7 @@ import devicesDatabase from '../database/devicesDatabase';
 import {DataTypes} from 'sequelize';
 
 // Create the brand model
-const BrandModel = devicesDatabase.define('Brand', {
+const BrandModel = devicesDatabase.define('brand', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,

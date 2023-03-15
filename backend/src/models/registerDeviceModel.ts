@@ -37,14 +37,14 @@ const registerDeviceModel = sequelize.define('registerDevice', {
 registerDeviceModel.belongsTo(deviceModel, {foreignKey: {
 	name: 'devicesId',
 	field: 'devices_id',
-	allowNull: false,
-}});
+	allowNull: false }
+});
 
 // Create 1 - N relationship with employee
 registerDeviceModel.belongsTo(employeeModel, {foreignKey: {
 	name: 'employeesId',
 	field: 'employees_id',
-	allowNull: false,
+	allowNull: false 
 }});
 
 // Export the model

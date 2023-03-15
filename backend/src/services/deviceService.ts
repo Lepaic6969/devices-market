@@ -42,6 +42,8 @@ export const getDevices = async (): Promise<ResponseType> => {
 			data: devices,
 		};
 	} catch (error) {
+		// Log error
+		console.log(error);
 		// Return response
 		response = {
 			status: 500,
@@ -79,6 +81,8 @@ export const getDeviceById = async (id: number): Promise<ResponseType> => {
 			data: device,
 		};
 	} catch (error) {
+		// Log error
+		console.log(error);
 		// Return response
 		response = {
 			status: 500,
@@ -104,6 +108,8 @@ export const createDevice = async (device: DeviceType): Promise<ResponseType> =>
 			message: 'Device created',
 		};
 	} catch (error) {
+		// Log error
+		console.log(error);
 		// Return response
 		response = {
 			status: 500,
@@ -129,6 +135,8 @@ export const updateDevice = async (id: number, device: DeviceType): Promise<Resp
 			message: 'Device updated',
 		};
 	} catch (error) {
+		// Log error
+		console.log(error);
 		// Return response
 		response = {
 			status: 500,
@@ -154,6 +162,8 @@ export const deleteDevice = async (id: number): Promise<ResponseType> => {
 			message: 'Device deleted',
 		};
 	} catch (error) {
+		// Log error
+		console.log(error);
 		// Return response
 		response = {
 			status: 500,

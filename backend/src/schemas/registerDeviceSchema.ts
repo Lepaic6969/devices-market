@@ -11,8 +11,8 @@ const registerDeviceSchema = Joi.object({
     note: Joi.string()
         .min(3)
         .max(255),
-    employeeId: Joi.number(),
-    deviceId: Joi.number(),
+    employeesId: Joi.number(),
+    devicesId: Joi.number(),
 });
 
 // Export the schema

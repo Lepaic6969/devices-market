@@ -8,7 +8,7 @@ import devicesDatabase from '../database/devicesDatabase';
 import {DataTypes} from 'sequelize';
 
 // Create the reference model
-const ReferenceModel = devicesDatabase.define('Reference', {
+const ReferenceModel = devicesDatabase.define('reference', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,

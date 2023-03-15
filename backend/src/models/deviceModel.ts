@@ -14,7 +14,7 @@ import BrandModel from './brandModel';
 import ReferenceModel from './referenceModel';
 
 // Create the device model
-const DeviceModel = devicesDatabase.define('Device', {
+const DeviceModel = devicesDatabase.define('device', {
 	id: {
 		type: DataTypes.INTEGER,
 		primaryKey: true,
@@ -44,15 +44,14 @@ const DeviceModel = devicesDatabase.define('Device', {
 DeviceModel.belongsTo(BrandModel, {foreignKey: {
 	name: 'brandsId',
 	field: 'brands_id',
-	allowNull: false,
-},
-});
+	allowNull: false
+}});
 
 // Create 1 to n relationship with the reference model
 DeviceModel.belongsTo(ReferenceModel, {foreignKey: {
-	name: 'references_id',
+	name: 'referencesId',
 	field: 'references_id',
-	allowNull: false,
+	allowNull: false
 }});
 
 // Export the device model

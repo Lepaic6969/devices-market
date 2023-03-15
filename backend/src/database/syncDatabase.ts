@@ -13,11 +13,11 @@ const syncDatabase = async (): Promise<void> => {
 	// Try to sync the database
 	try {
 		// Sync the database
-		await BrandModel.sync();
-		await ReferenceModel.sync();
-		await DeviceModel.sync();
-		await EmployeeModel.sync();
-		await RegisterDeviceModel.sync();
+		await BrandModel.sync({alter: true});
+		await ReferenceModel.sync({alter: true});
+		await DeviceModel.sync({alter: true});
+		await EmployeeModel.sync({alter: true});
+		await RegisterDeviceModel.sync({alter: true});
 		// Log the success message
 		console.log('Database synchronized successfully');
 	} catch (error) {

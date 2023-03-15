@@ -39,7 +39,7 @@ export const getDevices = async (): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Devices found',
-			data: JSON.stringify(devices),
+			data: devices,
 		};
 	} catch (error) {
 		// Return response
@@ -76,7 +76,7 @@ export const getDeviceById = async (id: number): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Device found',
-			data: JSON.stringify(device),
+			data: device,
 		};
 	} catch (error) {
 		// Return response

@@ -25,7 +25,7 @@ export const getEmployees = async (): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Employees found',
-			data: JSON.stringify(employees),
+			data: employees,
 		};
 	} catch (error) {
 		// Return response
@@ -51,7 +51,7 @@ export const getEmployeeById = async (id: number): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Employee found',
-			data: JSON.stringify(employee),
+			data: employee,
 		};
 	} catch (error) {
 		// Return response

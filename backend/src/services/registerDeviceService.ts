@@ -39,7 +39,7 @@ export const getRegisterDevices = async (): Promise<ResponseType> => {
 		response = {
 			status: 200,
 			message: 'Register devices found',
-			data: JSON.stringify(registerDevices),
+			data: registerDevices,
 		};
 	} catch (error) {
 		// Return response
@@ -76,7 +76,7 @@ export const getRegisterDeviceById = async (id: number): Promise<ResponseType> =
 		response = {
 			status: 200,
 			message: 'Register device found',
-			data: JSON.stringify(registerDevice),
+			data: registerDevice,
 		};
 	} catch (error) {
 		// Return response

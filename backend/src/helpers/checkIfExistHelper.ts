@@ -2,7 +2,7 @@
 // Author: Sebastián Gámez Ariza
 
 // Import sequelize types
-import {type Model, type ModelStatic} from 'sequelize';
+import {Op, type Model, type ModelStatic} from 'sequelize';
 
 // Create function to check if a value already exists in the database
 const checkIfExist = async (model: ModelStatic<Model<any, any>>, property: string, value: string): Promise<boolean> => {
@@ -13,7 +13,9 @@ const checkIfExist = async (model: ModelStatic<Model<any, any>>, property: strin
 	try {
 		result = await model.findOne({
 			where: {
-				[property]: valueWithoutSpaces,
+				[property]: {
+					[Op.iLike]: valueWithoutSpaces,
+				},
 			},
 		});
 		// Return true if the value already exists

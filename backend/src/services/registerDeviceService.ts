@@ -17,7 +17,7 @@ import type RegisterDeviceType from '../types/registerDeviceType';
 import type ResponseType from '../types/responseType';
 
 // Get all register devices
-export const getAllRegisterDevices = async (): Promise<ResponseType> => {
+export const getRegisterDevices = async (): Promise<ResponseType> => {
 	// Create response
 	let response: ResponseType;
 	// Try to get all register devices

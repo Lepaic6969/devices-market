@@ -14,7 +14,7 @@ import type ResponseType from '../types/responseType';
 import checkIfExist from '../helpers/checkIfExistHelper';
 
 // Get all employees
-export const getAllEmployees = async (): Promise<ResponseType> => {
+export const getEmployees = async (): Promise<ResponseType> => {
 	// Create response
 	let response: ResponseType;
 	// Try to get all employees

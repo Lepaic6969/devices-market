@@ -1,0 +1,92 @@
+<template>
+  
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasTrademark" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+       <div class="container-form">
+          <div class="container body" id="registration-form">
+            
+            <div >
+                <h1>Registrar {{title}}</h1>
+                <form>
+                    <div class="form-group mb-2">
+                        <label for="name">Nombre:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre">
+                    </div>
+                    
+                    <div class="form-group mb-2 mt-5">
+                        <button type="submit" class="btn btn-outline-secondary btn-lg w-100">Registrar</button>
+                    </div>
+                </form>
+            </div>
+          </div>
+       </div>
+        
+      </div>
+    </div>
+    </template>
+    
+    <script>
+    export default {
+        //Aquí va toda la lógica con mis peticiones y eso...
+        //Este componente se va a usar 2 veces por tanto se van a programar las dos funcionalidades acá
+        props:{
+            title:String
+        }
+        //Con el title haces el condicional para que se ejecute una lógica u otra.
+    }
+    </script>
+    
+    <style scoped>
+        #registration-form .frm{
+        float:right;
+        height: 650px;
+        width: 50%;
+        min-width: 250px;
+        padding: 0 35px;
+        background-size: 100% 100%;
+        background-color: white;
+    }
+    
+    #registration-form h1{
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    
+    #registration-form .form-control{
+        width: 90%;
+        padding: 12px 20px;
+        height: auto;
+    }
+    
+    @media screen and (max-width: 700px){
+    
+    
+        #registration-form .frm{
+            width: 100%;
+        }
+    
+        #registration-form .form-control{
+            width: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 500px){
+        
+    
+        #registration-form .frm{
+            width: 100%;
+        }
+    
+        #registration-form h1{
+            text-align: center;
+        }
+    
+        #registration-form .btn{
+            width: 100%;
+            margin-top: 20px;
+        }
+    }
+    </style>

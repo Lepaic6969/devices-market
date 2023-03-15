@@ -5,23 +5,21 @@
 import devicesDatabase from '../database/devicesDatabase';
 
 // Import the sequelize library
-import { DataTypes } from 'sequelize';
-
-// Import the device model
-import DeviceModel from './deviceModel';
+import {DataTypes} from 'sequelize';
 
 // Create the reference model
 const ReferenceModel = devicesDatabase.define('Reference', {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        }
-    }, { timestamps: false, tableName: 'references' }
+	id: {
+		type: DataTypes.INTEGER,
+		primaryKey: true,
+		autoIncrement: true,
+		allowNull: false,
+	},
+	name: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
+}, {timestamps: false, tableName: 'references'},
 );
 
 // Export the reference model

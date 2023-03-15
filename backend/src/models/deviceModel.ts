@@ -5,7 +5,7 @@
 import devicesDatabase from '../database/devicesDatabase';
 
 // Import the sequelize library
-import { DataTypes } from 'sequelize';
+import {DataTypes} from 'sequelize';
 
 // Import the brand model
 import BrandModel from './brandModel';
@@ -15,43 +15,44 @@ import ReferenceModel from './referenceModel';
 
 // Create the device model
 const DeviceModel = devicesDatabase.define('Device', {
-        id: { 
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        serial: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        state: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
-    }, { timestamps: false, tableName: 'devices' }
+	id: {
+		type: DataTypes.INTEGER,
+		primaryKey: true,
+		autoIncrement: true,
+		allowNull: false,
+	},
+	name: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
+	serial: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
+	description: {
+		type: DataTypes.STRING,
+		allowNull: false,
+	},
+	state: {
+		type: DataTypes.BOOLEAN,
+		allowNull: false,
+	},
+}, {timestamps: false, tableName: 'devices'},
 );
 
 // Create 1 to n relationship with the brand model
-DeviceModel.belongsTo(BrandModel, { foreignKey: {
-    name: 'brandsId',
-    field: 'brands_id',
-    allowNull: false
-    } 
+DeviceModel.belongsTo(BrandModel, {foreignKey: {
+	name: 'brandsId',
+	field: 'brands_id',
+	allowNull: false,
+},
 });
 
 // Create 1 to n relationship with the reference model
-DeviceModel.belongsTo(ReferenceModel, { foreignKey: {
-    name: 'references_id',
-    field: 'references_id',
-    allowNull: false,
+DeviceModel.belongsTo(ReferenceModel, {foreignKey: {
+	name: 'references_id',
+	field: 'references_id',
+	allowNull: false,
 }});
 
 // Export the device model

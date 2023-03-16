@@ -11,9 +11,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr> <!--Aquí debe ir el v-for después de la petición http-->
-              <td >1</td>
-              <td >Celular</td>
+            <tr v-for="brand in brands" :key="brand.id"> <!--Aquí debe ir el v-for después de la petición http-->
+              <td >{{brand.id}}</td>
+              <td >{{brand.name}}</td>
               <td><button class="btn  btn-sm btn-secondary me-2"><i class="bi bi-arrow-repeat me-1"></i><span class="d-none d-md-inline-block">Actualizar</span> </button><button class="btn btn-sm btn-danger"><i class="bi bi-trash me-1"></i><span class="d-none d-md-inline-block">Borrar</span></button></td>
             </tr>
           
@@ -24,15 +24,21 @@
   
 </template>
 
-<script>
-import TableTitle from '../components/TableTitle.vue';
-import TrademarkOffCanvas from '../components/offcanvas/TrademarkOffCanvas.vue';
-export default {
-  components:{
-    TableTitle,
-    TrademarkOffCanvas
-  }
-}
+<script setup>
+  import TableTitle from '../components/TableTitle.vue';
+  import TrademarkOffCanvas from '../components/offcanvas/TrademarkOffCanvas.vue';
+  import {useBrandsStore} from '@/store/brands.js';
+  import { storeToRefs } from 'pinia';
+
+  const useBrands=useBrandsStore();
+  const {brands}=storeToRefs(useBrands);
+  const {getBrands,getBrandById,addBrand,updateBrand,deleteBrand}=useBrands;
+  // import {getData,addData,updateData,deleteData} from '../helpers/requests.js';
+
+  // const url='https://devices-market-production.up.railway.app/api/v1/brand';
+
+  
+ 
 </script>
 
 <style>

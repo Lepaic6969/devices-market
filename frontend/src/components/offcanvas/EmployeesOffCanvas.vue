@@ -1,6 +1,6 @@
 <template>
   
-<div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasEmployees" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas w-offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasEmployees" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-header">
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
@@ -9,27 +9,27 @@
       <div class="container body" id="registration-form">
         
         <div >
-            <h1>Registrar Empleado</h1>
-            <form>
+            <h2 class="mb-3 text-center">Registrar Empleado</h2>
+            <form class="w-75 mx-auto">
                 <div class="form-group mb-2">
-                    <label for="name">Nombres:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre">
+                    <label for="name" class="mb-2">Nombres:</label>
+                    <input type="text" class="form-control w-100" id="name" placeholder="Ingrese el nombre">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="lastname">Apellidos:</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Ingrese el apellido">
+                    <label for="lastname" class="mb-2">Apellidos:</label>
+                    <input type="text" class="form-control w-100" id="lastname" placeholder="Ingrese el apellido">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="address">Direccicón:</label>
-                    <input type="text" class="form-control" id="address" placeholder="Cra 7 Call 2">
+                    <label for="address" class="mb-2">Direccicón:</label>
+                    <input type="text" class="form-control w-100" id="address" placeholder="Cra 7 Call 2">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="phone">Teléfono:</label>
-                    <input type="text" class="form-control" id="phone" placeholder="7289660">
+                    <label for="phone" class="mb-2">Teléfono:</label>
+                    <input type="text" class="form-control w-100" id="phone" placeholder="7289660">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Ingrese su Correo Electrónico">
+                    <label for="email" class="mb-2">Email:</label>
+                    <input type="email" class="form-control w-100" id="email" placeholder="Ingrese su Correo Electrónico">
                 </div>
              
                 <div class="form-group mb-2 mt-5">
@@ -72,9 +72,15 @@ export default {
 	height: auto;
 }
 
+.w-offcanvas{
+    width:40%
+}
+
 @media screen and (max-width: 700px){
 
-
+    .w-offcanvas{
+    width:100%
+}
 	#registration-form .frm{
 		width: 100%;
 	}

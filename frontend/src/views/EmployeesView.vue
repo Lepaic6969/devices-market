@@ -27,7 +27,7 @@
               <td class=" d-none d-sm-table-cell">Calle 2 Carrera 8a</td>
               <td >3185633437</td>
               <td class=" d-none d-sm-table-cell">caamilo9517@gmail.com</td>
-              <td><button class="btn btn-secondary me-2"><i class="bi bi-arrow-repeat me-1"></i><span class="d-none d-md-inline-block">Actualizar</span> </button><button class="btn btn-danger"><i class="bi bi-trash me-1"></i><span class="d-none d-md-inline-block">Borrar</span></button></td>
+              <td><button class="btn  btn-sm btn-secondary me-1 me-md-2"><i class="bi bi-arrow-repeat me-1"></i><span class="d-none d-md-inline-block">Actualizar</span> </button><button class="btn btn-sm btn-danger"><i class="bi bi-trash me-1"></i><span class="d-none d-md-inline-block">Borrar</span></button></td>
             </tr>
           
           </tbody>

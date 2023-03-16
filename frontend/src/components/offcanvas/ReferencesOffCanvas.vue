@@ -1,6 +1,6 @@
 <template>
   
-    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasTrademark" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasReferences" aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -9,7 +9,7 @@
           <div class="container body" id="registration-form">
             
             <div >
-                <h2 class="mb-5 text-center">Registrar Marca</h2>
+                <h2 class="mb-5 text-center">Registrar Referencia</h2>
                 <form>
                     <div class="form-group mb-2">
                         <label for="name">Nombre:</label>

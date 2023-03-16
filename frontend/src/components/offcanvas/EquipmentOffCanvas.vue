@@ -1,6 +1,6 @@
 <template>
   
-    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasEquipment" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas w-offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasEquipment" aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -9,28 +9,44 @@
           <div class="container body" id="registration-form">
             
             <div >
-                <h1>Registrar Empleado</h1>
-                <form>
+                <h2 class="text-center">Registrar Dispositivo</h2>
+                <form class="w-75 mx-auto">
                     <div class="form-group mb-2">
-                        <label for="name">Nombre:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nombre del dispositivo">
+                        <label for="name" class="mb-2">Nombre:</label>
+                        <input type="text" class="form-control w-100" id="name" placeholder="Nombre del dispositivo">
                     </div>
                     <div class="form-group mb-2">
-                        <label for="lastname">Serial:</label>
-                        <input type="text" class="form-control" id="lastname" placeholder="Ingrese el serial">
+                        <label for="serial" class="mb-2">Serial:</label>
+                        <input type="text" class="form-control w-100" id="serial" placeholder="Ingrese el serial">
                     </div>
                     <div class="form-group mb-2">
-                        <label for="address">Direccicón:</label>
-                        <input type="text" class="form-control" id="address" placeholder="Cra 7 Call 2">
+                      <label class="mb-2">Marca:</label>
+                      <SelectComponent :data="[{id:1,name:'Sonny'},{id:2,name:'Samsung'}]" v-model="brandId"/>
+                       
                     </div>
                     <div class="form-group mb-2">
-                        <label for="phone">Teléfono:</label>
-                        <input type="text" class="form-control" id="phone" placeholder="7289660">
+                        <label class="mb-2">Referencia:</label>
+                        <SelectComponent :data="[{id:1,name:'Computador'},{id:2,name:'SmartPhone'}]" v-model="referenceId"/>
                     </div>
                     <div class="form-group mb-2">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Ingrese su Correo Electrónico">
+                        <label for="description" class="mb-2">Descripcion:</label>
+                        <input type="text" class="form-control w-100" id="description" placeholder="Ingrese la descripción del equipo.">
                     </div>
+                    <div class="form-group mb-2">
+                        <label for="state" class="mb-2">Estado del Equipo:</label>
+                        <select class="form-select" id="state">
+                            <option value="1">Nuevo</option>
+                            <option value="2">Usado</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="available" class="mb-2">Disponibilidad del Equipo:</label>
+                        <select class="form-select" id="available">
+                            <option value="1">Disponible</option>
+                            <option value="2">No Disponible</option>
+                        </select>
+                    </div>
+                    
                  
                     <div class="form-group mb-2 mt-5">
                         <button type="submit" class="btn btn-outline-secondary btn-lg w-100">Registrar</button>
@@ -45,12 +61,36 @@
     </template>
     
     <script>
+    import SelectComponent from '../SelectComponent.vue';
     export default {
-        //Aquí va toda la lógica con mis peticiones y eso...
+        components:{
+            SelectComponent
+        },
+        data(){
+            return {
+                brandId:null,
+                referenceId:null,
+            }
+        }
+       
     }
     </script>
     
     <style scoped>
+        ::-webkit-scrollbar {
+        width: 8px; /* Ancho de la barra de desplazamiento */
+        background-color:  rgb(33,37,41); /* Color de fondo */
+        }
+
+        /* Estilos del thumb (control deslizante) de la barra de desplazamiento */
+        ::-webkit-scrollbar-thumb {
+        background-color:  #6c757d;/* Color del thumb */
+        border-radius: 5px; /* Radio de la esquina */
+        }
+    
+        .w-offcanvas{
+            width:40%
+        }
         #registration-form .frm{
         float:right;
         height: 650px;
@@ -74,7 +114,10 @@
     
     @media screen and (max-width: 700px){
     
-    
+        
+        .w-offcanvas{
+            width:100%
+        }
         #registration-form .frm{
             width: 100%;
         }

@@ -1,6 +1,6 @@
 <template>
   
-    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasTrademark" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasAssign" aria-labelledby="offcanvasExampleLabel">
       <div class="offcanvas-header">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -9,11 +9,23 @@
           <div class="container body" id="registration-form">
             
             <div >
-                <h2 class="mb-5 text-center">Registrar Marca</h2>
+                <h2 class="mb-5 text-center">Registrar Referencia</h2>
                 <form>
                     <div class="form-group mb-2">
-                        <label for="name">Nombre:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre">
+                        <label  class="mb-2">Empleado:</label>
+                        <SelectComponent :data="[{id:1,name:'Juan Camilo'},{id:2,name:'Sebastian Gámez'},{id:30,name:'Jean Carlos'}]" v-model="employeesId"/>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="mb-2">Equipo:</label>
+                        <SelectComponent :data="[{id:1,name:'Celular Y9'},{id:2,name:'Smart TV'},{id:66,name:'Apple Watch'}]" v-model="devicesId"/>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="date" class="mb-2">Fecha:</label>
+                        <input type="date" id="date" v-model="date">
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="note" class="mb-2 " >Observación:</label>
+                        <input type="text" id="note" class="form-control w-100" v-model="date">
                     </div>
                     
                     <div class="form-group mb-2 mt-5">
@@ -28,13 +40,36 @@
     </div>
     </template>
     
-    <script>
+<script>
+    import SelectComponent from '../SelectComponent.vue';
     export default {
-        
+    components: { 
+        SelectComponent
+     },
+    data(){
+        return {
+            employeesId:'',
+            devicesId:'',
+            date:'',
+        }
     }
-    </script>
+    }
+</script>
     
-    <style scoped>
+<style scoped>
+input[type="date"] {
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  width: 100%;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff;
+}
         #registration-form .frm{
         float:right;
         height: 650px;

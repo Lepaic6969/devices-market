@@ -1,7 +1,7 @@
 import {defineStore} from 'pinia';
 
 
-export const  useBrandsStore=defineStore('home',{
+export const  useBrandsStore=defineStore('brands',{
     state:()=>({
         brands:[
             {
@@ -38,7 +38,7 @@ export const  useBrandsStore=defineStore('home',{
         deleteBrand(id){
             const index=this.brands.map(el=>el.id).indexOf(id); //El índice que debo borrar.
             this.brands.splice(index,1);
-
+            //TODO: Antes de hacer la petición para la actualización en la base de datos, debo quitarle el id al objeto que envío.
         }
     },
     getters:{

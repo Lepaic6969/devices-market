@@ -1,6 +1,6 @@
 <template>
   
-    <div class="offcanvas offcanvas-start text-bg-dark " tabindex="-1" id="offcanvasTrademark" aria-labelledby="offcanvasExampleLabel" >
+    <div class="offcanvas offcanvas-start text-bg-dark " tabindex="-1" id="offcanvasTrademark" aria-labelledby="offcanvasExampleLabel" ref="myOffCanvas">
       <div class="offcanvas-header">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -14,15 +14,18 @@
                     <div class="form-group mb-2">
                         <label for="name " >Nombre:</label>
                         <input type="text" class="form-control mt-2" id="name" placeholder="Ingrese el nombre" v-model="name">
+                        <!-- <div  class="form-text text-danger" v-if="errorName">La marca que intenta registrar ya existe.</div> -->
                     </div>
                     
                     <div class="form-group mb-2 mt-5">
                         
-                        <button
+                       
+                          <button
                           type="submit"
                           class="btn btn-outline-secondary btn-lg w-100"
                           data-bs-dismiss="offcanvas"
-                          aria-label="Close">{{buttonText}}</button>
+                          aria-label="Close"
+                          >{{buttonText}}</button>
                     </div>
                 </form>
             </div>
@@ -55,6 +58,9 @@
         
         //Variables Reactivas...
         const name=ref('');
+        // const errorName=ref(false);
+        const myOffCanvas=ref(null);
+        
         //const item=getBrandById(id.value)
               
        
@@ -68,12 +74,21 @@
             }
         }
         const createItem=()=>{
-            const brand={
+            let flag=brands.value.some(brand=>brand.name.toLowerCase()===name.value.toLowerCase())
+            if(!flag){
+                // errorName.value=false
+                const brand={
                 id:brands.value[brands.value.length-1].id+1,
                 name:name.value,
+                }
+                addBrand(brand);
+                name.value='';
+                // closeOffCanvas();
+            }else{
+                // errorName.value=true
+                name.value='';
             }
-            addBrand(brand);
-            name.value='';
+            
         }
         const updateItem=()=>{
             const newBrand={
@@ -82,6 +97,16 @@
             }
             updateBrand(id.value,newBrand);
         }
+        // const closeOffCanvas=()=>{
+        //     // // Obtener referencia al offcanvas
+        //     // const myOffcanvas = document.getElementById("offcanvasTrademark");
+
+        //     // // Cerrar el offcanvas
+        //     // // const offcanvas = new bootstrap.Offcanvas(myOffcanvas);
+        //     // offcanvas.hide();
+        //     const offcanvas = new bootstrap.Offcanvas(myOffCanvas.value);
+        //     offcanvas.hide();
+        // }
 
         //Este es el watch en composition API.
         watch(title,(newTitle,oldTitle)=>{

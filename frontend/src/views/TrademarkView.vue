@@ -44,7 +44,7 @@
   import {useBrandsStore} from '@/store/brands.js';
   import {useOffCanvasStore} from '@/store/offCanvas.js'
   import { storeToRefs } from 'pinia';
-  // import {ref} from 'vue';
+  import {onMounted} from 'vue';
 
   const useBrands=useBrandsStore();
   const useOffCanvas=useOffCanvasStore();
@@ -53,7 +53,9 @@
   const {brands,trademarkOffCanvas}=storeToRefs(useBrands);
   const {getBrands,getBrandById,addBrand,updateBrand, deleteBrand}=useBrands;
   
-
+onMounted(()=>{
+  getBrands();
+})
   
   
 

@@ -3,6 +3,7 @@ export const getData=async(url)=>{
             let res=await fetch(url);
             let {data}=await res.json();
             console.log(data)
+            return data;
         }catch(err){
         console.log(err)
         }
@@ -55,6 +56,7 @@ export const deleteData=async(url)=>{
     }
 }
 
+//API desplegado en: https://devices-market-production.up.railway.app/api/v1/
 //  getData(url); //GET
   //addData(url,data); //POST
   //updateData(URL,DATA); ///PUT

@@ -16,7 +16,8 @@ export const  useBrandsStore=defineStore('brands',{
                 "id": 3,
                 "name": "Samsung"
               }
-        ]
+        ],
+        
     }),
     actions:{
         getBrands(){
@@ -25,7 +26,7 @@ export const  useBrandsStore=defineStore('brands',{
         
         getBrandById(id){
             const index=this.brands.map(el=>el.id).indexOf(id);
-            return this.brands[id]; 
+            return this.brands[index]; 
         },
         //***********TODO: OJO QUE ESTOS NECESITAN ACTUALIZACIONES DE LA DATA EN EL BACKEND*********************
         addBrand(brand){
@@ -39,9 +40,8 @@ export const  useBrandsStore=defineStore('brands',{
             const index=this.brands.map(el=>el.id).indexOf(id); //El índice que debo borrar.
             this.brands.splice(index,1);
             //TODO: Antes de hacer la petición para la actualización en la base de datos, debo quitarle el id al objeto que envío.
-        }
-    },
-    getters:{
-        
+        },
+
     }
+    
 });

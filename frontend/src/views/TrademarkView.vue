@@ -1,7 +1,10 @@
 <template>
   <div class="container-md container-fluid mt-5">
     <TableTitle title="Marcas" id="offcanvasTrademark"/>
-    <TrademarkOffCanvas/>
+    
+      <TrademarkOffCanvas />
+   
+   
     <table class="table bg-white bg-opacity-75 mt-3 w-75">
           <thead >
             <tr>
@@ -19,7 +22,7 @@
                 <!--Este es el botón que habilita mi offCanvas-->
                <button 
                   class="btn  btn-sm btn-secondary me-2" data-bs-toggle="offcanvas" data-bs-target='#offcanvasTrademark'
-                  @click="update"
+                  @click="updateAction(brand.id,brand.name)"
                   ><i
                   class="bi bi-arrow-repeat me-1"></i><span
                   class="d-none d-md-inline-block">Actualizar</span>
@@ -41,17 +44,17 @@
   import {useBrandsStore} from '@/store/brands.js';
   import {useOffCanvasStore} from '@/store/offCanvas.js'
   import { storeToRefs } from 'pinia';
-  import {ref} from 'vue';
+  // import {ref} from 'vue';
 
   const useBrands=useBrandsStore();
   const useOffCanvas=useOffCanvasStore();
-  const {update,}=useOffCanvas;
+  const {updateAction}=useOffCanvas;
   const {create}=storeToRefs(useOffCanvas)
-  const {brands}=storeToRefs(useBrands);
+  const {brands,trademarkOffCanvas}=storeToRefs(useBrands);
   const {getBrands,getBrandById,addBrand,updateBrand, deleteBrand}=useBrands;
-  // import {getData,addData,updateData,deleteData} from '../helpers/requests.js';
+  
 
-  // const url='https://devices-market-production.up.railway.app/api/v1/brand';
+  
   
 
   

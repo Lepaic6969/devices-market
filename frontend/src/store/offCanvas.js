@@ -1,21 +1,29 @@
 import {defineStore} from 'pinia';
 export const  useOffCanvasStore=defineStore('offcanvas',{
     state:()=>({
-        create:true
+        create:true,
+        id:null,
+        name:'',
+        
     }),
     actions:{
-        update(){
+        updateAction(id,name){
             this.create=false
-            console.log(this.create)
+            this.id=id
+            this.name=name
         },
-        create(){
+        createAction(){
             this.create=true
-            console.log(this.create)
-        }
+            this.id=null
+           
+        },
     },
     getters:{
         title:(state)=>{
-            return (state.create)?'Registrar Marca':'Actualizar Marca'
+            return (state.create)?'Registrar Marca':`Actualizar Marca ${state.name}`;
+        },
+        buttonText:(state)=>{
+            return (state.create)?'Registrar':'Actualizar';
         }
     }
 });

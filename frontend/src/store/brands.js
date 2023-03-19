@@ -25,13 +25,14 @@ export const  useBrandsStore=defineStore('brands',{
     actions:{
         async getBrands(){
            this.brands=await getData(URL);
+           this.sortById();
         },
         
         getBrandById(id){
             const index=this.brands.map(el=>el.id).indexOf(id);
             return this.brands[index]; 
         },
-        //***********TODO: OJO QUE ESTOS NECESITAN ACTUALIZACIONES DE LA DATA EN EL BACKEND*********************
+        
         addBrand(brand){
             this.brands.push(brand);
             //Petición HTTP...
@@ -54,6 +55,9 @@ export const  useBrandsStore=defineStore('brands',{
             const url=`${URL}/${id}`;
             deleteData(url);
         },
+        sortById(){
+            this.brands.sort((a,b)=>a.id-b.id);
+        }
 
     }
     

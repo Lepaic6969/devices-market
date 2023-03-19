@@ -20,7 +20,7 @@ export const  useOffCanvasStore=defineStore('offcanvas',{
     },
     getters:{
         title:(state)=>{
-            return (state.create)?'Registrar Marca':`Actualizar Marca ${state.name}`;
+            return (state.create)?'Registro':`Actualizar ${state.name}`;
         },
         buttonText:(state)=>{
             return (state.create)?'Registrar':'Actualizar';

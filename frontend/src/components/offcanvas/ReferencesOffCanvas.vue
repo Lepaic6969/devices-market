@@ -9,15 +9,23 @@
           <div class="container body" id="registration-form">
             
             <div >
-                <h2 class="mb-5 text-center">Registrar Referencia</h2>
-                <form>
+                <h2 class="mb-5 text-center">{{title}}</h2>
+                <form @submit.prevent="processForm">
                     <div class="form-group mb-2">
-                        <label for="name">Nombre:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Ingrese el nombre">
+                        <label for="name " >Nombre:</label>
+                        <input type="text" class="form-control mt-2" id="name" placeholder="Ingrese el nombre" v-model="name">
+                        <!-- <div  class="form-text text-danger" v-if="errorName">La marca que intenta registrar ya existe.</div> -->
                     </div>
                     
                     <div class="form-group mb-2 mt-5">
-                        <button type="submit" class="btn btn-outline-secondary btn-lg w-100">Registrar</button>
+                        
+                       
+                          <button
+                          type="submit"
+                          class="btn btn-outline-secondary btn-lg w-100"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                          >{{buttonText}}</button>
                     </div>
                 </form>
             </div>
@@ -28,10 +36,78 @@
     </div>
     </template>
     
-    <script>
-    export default {
+    <script setup>
+        import {ref,watch} from 'vue'
+        import {useReferencesStore} from '@/store/references.js';
+        import {useOffCanvasStore} from '@/store/offCanvas.js'
+        import { storeToRefs } from 'pinia';
+       
         
-    }
+        
+
+
+        const useReferences=useReferencesStore();
+       
+        const {references}=storeToRefs(useReferences);
+        const {getReferenceById,addReference,updateReference}=useReferences;
+
+        const useOffCanvas=useOffCanvasStore();
+        const {create,id,title,buttonText}=storeToRefs(useOffCanvas);
+
+        
+        //Variables Reactivas...
+        const name=ref('');
+        // const errorName=ref(false);
+        const myOffCanvas=ref(null);
+        
+        //const item=getBrandById(id.value)
+              
+       
+
+        //Funcionalidad del formulario.
+        const processForm=()=>{
+            if(create.value){
+                createItem();
+            }else{
+                updateItem();
+            }
+        }
+        const createItem=()=>{
+            let flag=references.value.some(reference=>reference.name.toLowerCase()===name.value.toLowerCase())
+            if(!flag && name.value!==''){
+             
+                const reference={
+                id:references.value[references.value.length-1]?.id+1||1,
+                name:name.value,
+                }
+                addReference(reference);
+                name.value='';
+                // closeOffCanvas();
+            }else{
+                // errorName.value=true
+                name.value='';
+            }
+            
+        }
+        const updateItem=()=>{
+            const newReference={
+                id:id.value, 
+                name:name.value
+            }
+            updateReference(id.value,newReference);
+        }
+       
+
+        //Este es el watch en composition API.
+        watch(title,(newTitle,oldTitle)=>{
+            
+              let item=getReferenceById(id.value)
+              if(item){
+                name.value=item.name
+              }else{
+                name.value=''
+              }
+        })
     </script>
     
     <style scoped>

@@ -5,7 +5,7 @@
       <TrademarkOffCanvas />
    
    
-    <table class="table bg-white bg-opacity-75 mt-3 w-75">
+    <table class="table bg-white bg-opacity-75 mt-3 w-75" v-if="brands.length!==0">
           <thead >
             <tr>
               <th scope="col">Id</th>
@@ -33,6 +33,7 @@
           
           </tbody>
         </table>
+        <LoadingSpinner v-else/>
   </div>
  
   
@@ -41,6 +42,7 @@
 <script setup>
   import TableTitle from '../components/TableTitle.vue';
   import TrademarkOffCanvas from '../components/offcanvas/TrademarkOffCanvas.vue';
+  import LoadingSpinner from '../components/LoadingSpinner.vue';
   import {useBrandsStore} from '@/store/brands.js';
   import {useOffCanvasStore} from '@/store/offCanvas.js'
   import { storeToRefs } from 'pinia';
@@ -50,7 +52,7 @@
   const useOffCanvas=useOffCanvasStore();
   const {updateAction}=useOffCanvas;
   const {create}=storeToRefs(useOffCanvas)
-  const {brands,trademarkOffCanvas}=storeToRefs(useBrands);
+  const {brands}=storeToRefs(useBrands);
   const {getBrands,getBrandById,addBrand,updateBrand, deleteBrand}=useBrands;
   
 onMounted(()=>{

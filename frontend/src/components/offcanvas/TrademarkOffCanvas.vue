@@ -37,7 +37,6 @@
     </template>
     
     <script setup>
-    //Ciclos de vida
         import {ref,watch} from 'vue'
         import {useBrandsStore} from '@/store/brands.js';
         import {useOffCanvasStore} from '@/store/offCanvas.js'
@@ -75,7 +74,7 @@
         }
         const createItem=()=>{
             let flag=brands.value.some(brand=>brand.name.toLowerCase()===name.value.toLowerCase())
-            if(!flag){
+            if(!flag && name.value!==''){
                 // errorName.value=false
                 const brand={
                 id:brands.value[brands.value.length-1].id+1,

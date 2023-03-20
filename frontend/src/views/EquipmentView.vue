@@ -27,7 +27,7 @@
                  <td>{{device.referencesId}}</td>
                  <td>
                     <button 
-                    class="btn  btn-sm btn-secondary me-2" data-bs-toggle="offcanvas" data-bs-target='#offcanvasEmployees'
+                    class="btn  btn-sm btn-secondary me-2" data-bs-toggle="offcanvas" data-bs-target='#offcanvasEquipment'
                     @click="updateAction(device.id,device.name)"
                     ><i
                     class="bi bi-arrow-repeat me-1"></i><span

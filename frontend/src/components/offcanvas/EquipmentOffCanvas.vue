@@ -32,7 +32,7 @@
                     </div> -->
                     <div class="form-group mb-2">
                         <label for="available" class="mb-2">Disponibilidad del Equipo:</label>
-                        <select class="form-select" id="available" v-model="state">
+                        <select class="form-select" id="available" v-model="stateForm">
                             <option value="true">Disponible</option>
                             <option value="false">No Disponible</option>
                         </select>
@@ -71,7 +71,7 @@
     
     <script setup>
         import SelectComponent from '../SelectComponent.vue';
-        import {ref,watch} from 'vue'
+        import {ref,watch,onMounted} from 'vue'
         import {useDevicesStore} from '@/store/devices.js';
         import {useBrandsStore} from '@/store/brands.js';
         import {useReferencesStore} from '@/store/references.js';
@@ -88,6 +88,8 @@
         const {references}=storeToRefs(useReferences);
 
         const {getDeviceById,addDevice,updateDevice}=useDevices;
+        const {getBrands}=useBrands;
+        const {getReferences}=useReferences
 
         const useOffCanvas=useOffCanvasStore();
         const {create,id,title,buttonText}=storeToRefs(useOffCanvas);
@@ -99,16 +101,17 @@
         const name=ref('');
         const serial=ref('');
         const description=ref('');
-        const state=ref('');
+        const stateForm=ref('');
         const brandsId=ref('');
         const referencesId=ref('');
 
-        // **************************Hasta aquí todo actualizado ************ .....
+     
         
         //Funcionalidad del formulario.
         const formValidation=()=>{
             let flag=true;
-            if(name.value===''|| lastName.value===''|| address.value==='' || phone.value==='' || email.value===''){
+            //Validación si hay algún campo vacío...
+            if(name.value===''|| serial.value===''|| description.value==='' || stateForm.value==='' || brandsId.value==='' || referencesId===''){
                 flag=false
             }
             return flag;
@@ -119,58 +122,73 @@
             if(correctForm){
                 (create.value)?createItem():updateItem();
             }
-            //TODO: Aquí debería ir el código para las alertas visuales del formulario.
            
         }
-        const createItem=()=>{
-                const employee={
-                id:employees.value[employees.value.length-1]?.id+1 || 1,
-                name:name.value,
-                lastName:lastName.value,
-                address:address.value,
-                phone:phone.value,
-                email:email.value
-
-                }
+              
                
-                addEmployee(employee);
-                name.value='';  
-                lastName.value='';
-                address.value='';
-                phone.value='';
-                email.value='';
+      
+        const createItem=()=>{
+                let stateBoolean=(stateForm.value==='true');
+                const device={
+                id:devices.value[devices.value.length-1]?.id+1 || 1,
+                name:name.value,
+                serial:serial.value,
+                description:description.value,
+                state:stateBoolean,
+                brandsId:brandsId.value,
+                referencesId:referencesId.value
+                }
+                console.log(stateForm.value)
+                addDevice(device);
+                name.value='';
+                serial.value='';
+                description.value='';
+                stateForm.value='';
+                brandsId.value='';
+                referencesId.value='';
         }
         const updateItem=()=>{
-            const newBrand={
+            let stateBoolean=(stateForm.value==='true');
+            const newDevice={
                 id:id.value, 
                 name:name.value,
-                lastName:lastName.value,
-                address:address.value,
-                phone:phone.value,
-                email:email.value
+                serial:serial.value,
+                description:description.value,
+                state:stateBoolean,
+                barnsId:brandsId.value,
+                referencesId:referencesId.value
             }
-            console.log(`Data que recojo del formulario: ${JSON.stringify(newBrand)}`);
-            updateEmployee(id.value,newBrand);
+            // console.log(`Data que recojo del formulario: ${JSON.stringify(newBrand)}`);
+            console.log(stateForm.value)
+            updateDevice(id.value,newDevice);
         }
       
 
         //Este es el watch en composition API.
         watch(title,(newTitle,oldTitle)=>{
             
-              let item=getEmployeeById(id.value)
+              let item=getDeviceById(id.value)
               if(item){
                 name.value=item.name,
-                lastName.value=item.lastName,
-                address.value=item.address,
-                phone.value=item.phone,
-                email.value=item.email
+                serial.value=item.serial,
+                description.value=item.description,
+                stateForm.value=item.state,
+                brandsId.value=item.brandsId,
+                referencesId.value=item.referencesId
               }else{
                 name.value='',
-                lastName.value='',
-                address.value='',
-                phone.value='',
-                email.value=''
+                serial.value='',
+                description.value='',
+                stateForm.value='',
+                brandsId.value='',
+                referencesId.value=''
               }
+        });
+
+        //Ciclos de vida del componente....
+        onMounted(()=>{
+            getBrands();
+            getReferences();
         });
     </script>
     

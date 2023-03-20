@@ -29,7 +29,7 @@ export const  useDevicesStore=defineStore('devices',{
                 brandsId:device.brandsId,
                 referencesId:device.referencesId
             }
-            console.log(data)
+            console.log(`Data que va hacia el backend: ${JSON.stringify(data)}`);
             addData(URL,data); //POST
             
         },

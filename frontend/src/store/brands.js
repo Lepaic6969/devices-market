@@ -6,21 +6,6 @@ const URL= 'https://devices-market-production.up.railway.app/api/v1/brand';
 export const  useBrandsStore=defineStore('brands',{
     state:()=>({
         brands:[],
-        // brands:[
-        //     {
-        //         "id": 1,
-        //         "name": "Apple"
-        //       },
-        //       {
-        //         "id": 2,
-        //         "name": "Huawei"
-        //       },
-        //       {
-        //         "id": 3,
-        //         "name": "Samsung"
-        //       }
-        // ],
-        
     }),
     actions:{
         async getBrands(){

@@ -51,9 +51,8 @@
   const useBrands=useBrandsStore();
   const useOffCanvas=useOffCanvasStore();
   const {updateAction}=useOffCanvas;
-  const {create}=storeToRefs(useOffCanvas)
   const {brands}=storeToRefs(useBrands);
-  const {getBrands,getBrandById,addBrand,updateBrand, deleteBrand}=useBrands;
+  const {getBrands, deleteBrand}=useBrands;
   
 onMounted(()=>{
   getBrands();

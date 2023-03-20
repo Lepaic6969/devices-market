@@ -47,9 +47,8 @@
   const useReferences=useReferencesStore();
   const useOffCanvas=useOffCanvasStore();
   const {updateAction}=useOffCanvas;
-  const {create}=storeToRefs(useOffCanvas)
   const {references}=storeToRefs(useReferences);
-  const {getReferences,getReferenceById,addReference,updateReference, deleteReference}=useReferences;
+  const {getReferences,deleteReference}=useReferences;
   
 onMounted(()=>{
   getReferences();

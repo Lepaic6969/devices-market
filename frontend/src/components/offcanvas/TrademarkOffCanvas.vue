@@ -1,6 +1,6 @@
 <template>
   
-    <div class="offcanvas offcanvas-start text-bg-dark " tabindex="-1" id="offcanvasTrademark" aria-labelledby="offcanvasExampleLabel" ref="myOffCanvas">
+    <div class="offcanvas offcanvas-start text-bg-dark " tabindex="-1" id="offcanvasTrademark" aria-labelledby="offcanvasExampleLabel" >
       <div class="offcanvas-header">
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -75,23 +75,21 @@
         const createItem=()=>{
             let flag=brands.value.some(brand=>brand.name.toLowerCase()===name.value.toLowerCase())
             if(!flag && name.value!==''){
-                // errorName.value=false
                 const brand={
                 id:brands.value[brands.value.length-1].id+1,
                 name:name.value,
                 }
                 addBrand(brand);
                 name.value='';
-                // closeOffCanvas();
+                
             }else{
-                // errorName.value=true
                 name.value='';
             }
             
         }
         const updateItem=()=>{
             const newBrand={
-                id:id.value, //  Creo que esto es lo que genera el conflicto
+                id:id.value, 
                 name:name.value
             }
             updateBrand(id.value,newBrand);

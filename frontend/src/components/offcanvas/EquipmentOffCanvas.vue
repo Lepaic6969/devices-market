@@ -9,47 +9,56 @@
           <div class="container body" id="registration-form">
             
             <div >
-                <h2 class="text-center">Registrar Dispositivo</h2>
-                <form class="w-75 mx-auto">
+                <h2 class="text-center">{{title}}</h2>
+                <form class="w-75 mx-auto" @submit.prevent="processForm">
                     <div class="form-group mb-2">
                         <label for="name" class="mb-2">Nombre:</label>
-                        <input type="text" class="form-control w-100" id="name" placeholder="Nombre del dispositivo">
+                        <input type="text" class="form-control w-100" id="name" placeholder="Nombre del dispositivo" v-model="name">
                     </div>
                     <div class="form-group mb-2">
                         <label for="serial" class="mb-2">Serial:</label>
-                        <input type="text" class="form-control w-100" id="serial" placeholder="Ingrese el serial">
-                    </div>
-                    <div class="form-group mb-2">
-                      <label class="mb-2">Marca:</label>
-                      <SelectComponent :data="[{id:1,name:'Sonny'},{id:2,name:'Samsung'}]" v-model="brandId"/>
-                       
-                    </div>
-                    <div class="form-group mb-2">
-                        <label class="mb-2">Referencia:</label>
-                        <SelectComponent :data="[{id:1,name:'Computador'},{id:2,name:'SmartPhone'}]" v-model="referenceId"/>
+                        <input type="text" class="form-control w-100" id="serial" placeholder="Ingrese el serial" v-model="serial">
                     </div>
                     <div class="form-group mb-2">
                         <label for="description" class="mb-2">Descripcion:</label>
-                        <input type="text" class="form-control w-100" id="description" placeholder="Ingrese la descripción del equipo.">
+                        <input type="text" class="form-control w-100" id="description" placeholder="Ingrese la descripción del equipo." v-model="description">
                     </div>
-                    <div class="form-group mb-2">
+                    <!-- <div class="form-group mb-2">
                         <label for="state" class="mb-2">Estado del Equipo:</label>
                         <select class="form-select" id="state">
                             <option value="1">Nuevo</option>
                             <option value="2">Usado</option>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group mb-2">
                         <label for="available" class="mb-2">Disponibilidad del Equipo:</label>
-                        <select class="form-select" id="available">
-                            <option value="1">Disponible</option>
-                            <option value="2">No Disponible</option>
+                        <select class="form-select" id="available" v-model="state">
+                            <option value="true">Disponible</option>
+                            <option value="false">No Disponible</option>
                         </select>
                     </div>
+                    <div class="form-group mb-2">
+                      <label class="mb-2">Marca:</label>
+                      <SelectComponent :data="brands" v-model="brandsId"/>
+                       
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="mb-2">Referencia:</label>
+                        <SelectComponent :data="references" v-model="referencesId"/>
+                        <!-- <SelectComponent :data="[{id:1,name:'Computador'},{id:2,name:'SmartPhone'}]" v-model="referencesId"/> -->
+                    </div>
+                    
+                   
+                    
                     
                  
                     <div class="form-group mb-2 mt-5">
-                        <button type="submit" class="btn btn-outline-secondary btn-lg w-100">Registrar</button>
+                        <button
+                        type="submit"
+                        class="btn btn-outline-secondary btn-lg w-100"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                        >{{buttonText}}</button>
                     </div>
                 </form>
             </div>
@@ -60,20 +69,109 @@
     </div>
     </template>
     
-    <script>
-    import SelectComponent from '../SelectComponent.vue';
-    export default {
-        components:{
-            SelectComponent
-        },
-        data(){
-            return {
-                brandId:null,
-                referenceId:null,
-            }
-        }
+    <script setup>
+        import SelectComponent from '../SelectComponent.vue';
+        import {ref,watch} from 'vue'
+        import {useDevicesStore} from '@/store/devices.js';
+        import {useBrandsStore} from '@/store/brands.js';
+        import {useReferencesStore} from '@/store/references.js';
+
+        import {useOffCanvasStore} from '@/store/offCanvas.js'
+        import { storeToRefs } from 'pinia';
        
-    }
+        const useDevices=useDevicesStore();
+        const useBrands=useBrandsStore();
+        const useReferences=useReferencesStore();
+       
+        const {devices}=storeToRefs(useDevices);
+        const {brands}=storeToRefs(useBrands);
+        const {references}=storeToRefs(useReferences);
+
+        const {getDeviceById,addDevice,updateDevice}=useDevices;
+
+        const useOffCanvas=useOffCanvasStore();
+        const {create,id,title,buttonText}=storeToRefs(useOffCanvas);
+
+        
+        //Variables Reactivas...
+
+
+        const name=ref('');
+        const serial=ref('');
+        const description=ref('');
+        const state=ref('');
+        const brandsId=ref('');
+        const referencesId=ref('');
+
+        // **************************Hasta aquí todo actualizado ************ .....
+        
+        //Funcionalidad del formulario.
+        const formValidation=()=>{
+            let flag=true;
+            if(name.value===''|| lastName.value===''|| address.value==='' || phone.value==='' || email.value===''){
+                flag=false
+            }
+            return flag;
+        }
+        const processForm=()=>{
+            const correctForm=formValidation();
+            // console.log(correctForm)
+            if(correctForm){
+                (create.value)?createItem():updateItem();
+            }
+            //TODO: Aquí debería ir el código para las alertas visuales del formulario.
+           
+        }
+        const createItem=()=>{
+                const employee={
+                id:employees.value[employees.value.length-1]?.id+1 || 1,
+                name:name.value,
+                lastName:lastName.value,
+                address:address.value,
+                phone:phone.value,
+                email:email.value
+
+                }
+               
+                addEmployee(employee);
+                name.value='';  
+                lastName.value='';
+                address.value='';
+                phone.value='';
+                email.value='';
+        }
+        const updateItem=()=>{
+            const newBrand={
+                id:id.value, 
+                name:name.value,
+                lastName:lastName.value,
+                address:address.value,
+                phone:phone.value,
+                email:email.value
+            }
+            console.log(`Data que recojo del formulario: ${JSON.stringify(newBrand)}`);
+            updateEmployee(id.value,newBrand);
+        }
+      
+
+        //Este es el watch en composition API.
+        watch(title,(newTitle,oldTitle)=>{
+            
+              let item=getEmployeeById(id.value)
+              if(item){
+                name.value=item.name,
+                lastName.value=item.lastName,
+                address.value=item.address,
+                phone.value=item.phone,
+                email.value=item.email
+              }else{
+                name.value='',
+                lastName.value='',
+                address.value='',
+                phone.value='',
+                email.value=''
+              }
+        });
     </script>
     
     <style scoped>

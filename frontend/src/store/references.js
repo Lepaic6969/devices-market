@@ -6,21 +6,6 @@ const URL= 'https://devices-market-production.up.railway.app/api/v1/reference';
 export const  useReferencesStore=defineStore('references',{
     state:()=>({
         references:[],
-        // brands:[
-        //     {
-        //         "id": 1,
-        //         "name": "Apple"
-        //       },
-        //       {
-        //         "id": 2,
-        //         "name": "Huawei"
-        //       },
-        //       {
-        //         "id": 3,
-        //         "name": "Samsung"
-        //       }
-        // ],
-        
     }),
     actions:{
         async getReferences(){

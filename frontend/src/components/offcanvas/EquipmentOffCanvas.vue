@@ -114,7 +114,9 @@
             if(name.value===''|| serial.value===''|| description.value==='' || stateForm.value==='' || brandsId.value==='' || referencesId===''){
                 flag=false
             }
+           
             return flag;
+
         }
         const processForm=()=>{
             const correctForm=formValidation();
@@ -128,15 +130,18 @@
                
       
         const createItem=()=>{
+               //Validación para que el serial sea único...
+                const repeatedSerial=devices.value.some(el=>el.serial===serial.value);
+                if(repeatedSerial) return
                 let stateBoolean=(stateForm.value==='true');
                 const device={
-                id:devices.value[devices.value.length-1]?.id+1 || 1,
-                name:name.value,
-                serial:serial.value,
-                description:description.value,
-                state:stateBoolean,
-                brandsId:brandsId.value,
-                referencesId:referencesId.value
+                    id:devices.value[devices.value.length-1]?.id+1 || 1,
+                    name:name.value,
+                    serial:serial.value,
+                    description:description.value,
+                    state:stateBoolean,
+                    brandsId:brandsId.value,
+                    referencesId:referencesId.value
                 }
                 console.log(stateForm.value)
                 addDevice(device);
@@ -155,11 +160,11 @@
                 serial:serial.value,
                 description:description.value,
                 state:stateBoolean,
-                barnsId:brandsId.value,
+                brandsId:brandsId.value,
                 referencesId:referencesId.value
             }
             // console.log(`Data que recojo del formulario: ${JSON.stringify(newBrand)}`);
-            console.log(stateForm.value)
+            // console.log(stateForm.value)
             updateDevice(id.value,newDevice);
         }
       

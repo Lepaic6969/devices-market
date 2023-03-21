@@ -8,6 +8,7 @@
             <input type="text" class="form-control " placeholder="Buscar por nombre" aria-label="Username" aria-describedby="addon-wrapping" v-model="filter">
          </div>
          <!-- Fin del filtro de búsqueda -->
+         
          <EquipmentOffCanvas/>
            <table class="table bg-white bg-opacity-75 mt-3 " v-if="devices.length!==0">
              <thead >
@@ -28,7 +29,7 @@
                  <td >{{device.name}}</td>
                  <td class=" d-none d-sm-table-cell">{{device.serial}}</td>
                  <td class=" d-none d-sm-table-cell">{{device.description}}</td>
-                 <td class=" d-none d-sm-table-cell">{{device.state}}</td>
+                 <td class=" d-none d-sm-table-cell">{{(device.state)?'Disponible':'No Disponible'}}</td>
                  <td>{{device.brandsId}}</td>
                  <td>{{device.referencesId}}</td>
                  <td>

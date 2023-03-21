@@ -18,7 +18,7 @@
      
                     <div class="form-group mb-2">
                         <label class="mb-2">Equipo:</label>
-                        <SelectComponent :data="devices" v-model="devicesId"/>
+                        <SelectComponent :data="devices.filter(el=>el.state===true)" v-model="devicesId"/>
                     </div>
                     <div class="form-group mb-2">
                         <label for="note" class="mb-2 " >Observación:</label>

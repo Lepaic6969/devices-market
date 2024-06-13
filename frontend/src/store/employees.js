@@ -2,7 +2,7 @@ import {defineStore} from 'pinia';
 //Importamos los helpers de las peticiones HTTP.
 import {getData,addData,updateData,deleteData} from '../helpers/requests.js';
 
-const URL= 'https://devices-market-production.up.railway.app/api/v1/employee';
+const URL= 'http://localhost:3000/api/v1/employees';
 export const  useEmployeesStore=defineStore('employees',{
     state:()=>({
         employees:[],
@@ -25,11 +25,11 @@ export const  useEmployeesStore=defineStore('employees',{
             const data={
                 name:employee.name,
                 lastName:employee.lastName,
-                address:employee.address,
+                // address:employee.address,
                 phone:employee.phone,
                 email:employee.email
             }
-            // console.log(data)
+            console.log(data);
             addData(URL,data); //POST
             
         },

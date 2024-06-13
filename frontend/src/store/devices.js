@@ -2,7 +2,7 @@ import {defineStore} from 'pinia';
 //Importamos los helpers de las peticiones HTTP.
 import {getData,addData,updateData,deleteData} from '../helpers/requests.js';
 
-const URL= 'https://devices-market-production.up.railway.app/api/v1/device';
+const URL= 'http://localhost:3000/api/v1/devices';
 export const  useDevicesStore=defineStore('devices',{
     state:()=>({
         devices:[],

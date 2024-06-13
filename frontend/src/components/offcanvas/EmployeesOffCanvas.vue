@@ -20,7 +20,7 @@
                     <input type="text" class="form-control w-100" id="lastname" placeholder="Ingrese el apellido" v-model="lastName">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="address" class="mb-2">Direccicón:</label>
+                    <label for="address" class="mb-2">Dirección:</label>
                     <input type="text" class="form-control w-100" id="address" placeholder="Cra 7 Call 2" v-model="address">
                 </div>
                 <div class="form-group mb-2">
@@ -93,8 +93,8 @@
                 id:employees.value[employees.value.length-1]?.id+1 || 1,
                 name:name.value,
                 lastName:lastName.value,
-                address:address.value,
-                phone:phone.value,
+                // address:address.value,
+                phone:phone.value.toString(),
                 email:email.value
 
                 }

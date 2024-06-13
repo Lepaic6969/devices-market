@@ -2,7 +2,7 @@ import {defineStore} from 'pinia';
 //Importamos los helpers de las peticiones HTTP.
 import {getData,addData,updateData,deleteData} from '../helpers/requests.js';
 
-const URL= 'https://devices-market-production.up.railway.app/api/v1/brand';
+const URL= 'http://localhost:3000/api/v1/brands';
 export const  useBrandsStore=defineStore('brands',{
     state:()=>({
         brands:[],
@@ -25,6 +25,16 @@ export const  useBrandsStore=defineStore('brands',{
             addData(URL,data); //POST
             
         },
+        // async addBrand(brand){
+        //     try{
+        //             //Petición HTTP...
+        //         const data={name:brand.name}
+        //         await addData(URL,data); //POST
+        //         this.brands.push(brand);
+        //     }catch(err){
+        //         console.log(err);
+        //     }
+        // },
         updateBrand(id,newBrand){ //newBrand es un objeto.
             const index=this.brands.map(el=>el.id).indexOf(id); //El índice que debo alterar.
             this.brands[index]=newBrand;

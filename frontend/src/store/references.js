@@ -2,7 +2,7 @@ import {defineStore} from 'pinia';
 //Importamos los helpers de las peticiones HTTP.
 import {getData,addData,updateData,deleteData} from '../helpers/requests.js';
 
-const URL= 'https://devices-market-production.up.railway.app/api/v1/reference';
+const URL= 'http://localhost:3000/api/v1/references';
 export const  useReferencesStore=defineStore('references',{
     state:()=>({
         references:[],

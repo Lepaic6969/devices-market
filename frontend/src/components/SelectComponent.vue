@@ -1,6 +1,3 @@
-
-
-
 <template>
    
     <select class="form-select"  v-model="reactiveVariable">
